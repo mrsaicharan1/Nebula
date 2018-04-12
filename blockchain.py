@@ -1,4 +1,7 @@
 from flask import Flask, request
+from time import time
+import json
+import hashlib
 
 class Blockchain(object):
 
@@ -8,18 +11,39 @@ class Blockchain(object):
 
 	def new_block(self):
 		# creates new block and adds it to the chain
-		pass
+		block ={
+			
+			'index' : length(self.chain)
+			'timestamp': time() 
+			'transactions': self.transactions
+			'proof':proof
 
-	def new_transaction(self):
+			}
+		# Reset the current list of transactions
+        self.current_transactions = []
+
+        self.chain.append(block)
+
+        return block
+
+
+	def new_transaction(self,sender,recipient,amount):
 		# adds new transaction to the list of transactions
-		pass
+		self.current_transactions.append({
+			'sender' : sender,
+			'recipient':recipient,
+			'amount' : amount		
+				})
+			return self.last_block['index'] + 1
+		# adds new transaction to the list of transactions
 
 	@staticmethod	
 	def hash(block):
 		# hashes a block
-		pass
+		block_string = json.dumps(block, sort_keys=True).encode() # sorting to prevent inconsistency issues in hashes
+        return hashlib.sha256(block_string).hexdigest()
 
 	@property
 	def last_block(self):
         # Returns the last Block in the chain
-        pass	
+        return self.chain[-1]
