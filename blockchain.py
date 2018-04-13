@@ -61,6 +61,7 @@ class Blockchain(object):
 
     	return proof
 
+    @staticmethod
     def validate_proof(self,proof,last_proof):
     		guess =f'{last_proof}{proof}'.encode() 
 
