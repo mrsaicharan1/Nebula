@@ -26,7 +26,6 @@ class Blockchain(object):
 
         return block
 
-
 	def new_transaction(self,sender,recipient,amount):
 		# adds new transaction to the list of transactions
 		self.current_transactions.append({
@@ -47,3 +46,24 @@ class Blockchain(object):
 	def last_block(self):
         # Returns the last Block in the chain
         return self.chain[-1]
+
+        # proof of work algorithms
+
+
+    def proof_of_work(self,last_block):
+
+    	proof = 0
+
+    	validation = self.validate_proof(proof,last_proof)
+
+    	while validation is False:
+    		proof+=1
+
+    	return proof
+
+    def validate_proof(self,proof,last_proof):
+    		guess =f'{last_proof}{proof}'.encode() 
+
+    		hashed_guess = hashlib.sha256(guess).hexdigest()
+
+    		return hashed_guess[:4] == "0000"
