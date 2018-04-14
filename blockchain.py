@@ -48,7 +48,7 @@ class Blockchain(object):
         # Returns the last Block in the chain
         return self.chain[-1]
 
-        # proof of work algorithms
+        ## proof of work algorithms
 
 
     def proof_of_work(self,last_block):
