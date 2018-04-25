@@ -10,16 +10,13 @@ class Blockchain(object):
 		self.current_transactions = []
 
 	def new_block(self):
-		# creates new block and adds it to the chain
-		block ={
-			
+		block = {
 			'index' : length(self.chain)
-			'timestamp': time() 
+			'timestamp': time()
 			'transactions': self.transactions
 			'proof':proof
+				}
 
-			}
-		# Reset the current list of transactions
         self.current_transactions = []
 
         self.chain.append(block)
@@ -27,17 +24,16 @@ class Blockchain(object):
         return block
 
 	def new_transaction(self,sender,recipient,amount):
-		# adds new transaction to the list of transactions
-		
+
 		self.current_transactions.append({
 			'sender' : sender,
 			'recipient':recipient,
-			'amount' : amount		
+			'amount' : amount
 				})
 			return self.last_block['index'] + 1
-		
 
-	@staticmethod	
+
+	@staticmethod
 	def hash(block):
 		# hashes a block
 		block_string = json.dumps(block, sort_keys=True).encode() # sorting to prevent inconsistency issues in hashes
@@ -47,8 +43,6 @@ class Blockchain(object):
 	def last_block(self):
         # Returns the last Block in the chain
         return self.chain[-1]
-
-        ## proof of work algorithms
 
 
     def proof_of_work(self,last_block):
@@ -64,7 +58,7 @@ class Blockchain(object):
 
     @staticmethod
     def validate_proof(self,proof,last_proof):
-    		guess =f'{last_proof}{proof}'.encode() 
+    		guess =f'{last_proof}{proof}'.encode()
 
     		hashed_guess = hashlib.sha256(guess).hexdigest()
 
