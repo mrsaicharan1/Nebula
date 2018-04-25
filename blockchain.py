@@ -11,17 +11,15 @@ class Blockchain(object):
 
 	def new_block(self):
 		block = {
-			'index' : length(self.chain)
-			'timestamp': time()
-			'transactions': self.transactions
-			'proof':proof
-				}
-
-        self.current_transactions = []
-
+		'index' : length(self.chain),
+		'timestamp' : time(),
+		'transactions': self.transactions,
+		'proof': proof
+		}
+		self.current_transactions = []
         self.chain.append(block)
 
-        return block
+		return block
 
 	def new_transaction(self,sender,recipient,amount):
 
@@ -30,7 +28,7 @@ class Blockchain(object):
 			'recipient':recipient,
 			'amount' : amount
 				})
-			return self.last_block['index'] + 1
+		return self.last_block['index'] + 1
 
 
 	@staticmethod
@@ -41,13 +39,21 @@ class Blockchain(object):
 
 	@property
 	def last_block(self):
-        # Returns the last Block in the chain
-        return self.chain[-1]
+
+		return self.chain[-1]
+
+	@staticmethod
+	def validate_proof(self,proof,last_proof):
+
+		guess =f'{last_proof}{proof}'.encode()
+
+    	hashed_guess = hashlib.sha256(guess).hexdigest()
+
+    	return hashed_guess[:4] == "0000"
 
 
     def proof_of_work(self,last_block):
-
-    	proof = 0
+		proof = 0
 
     	validation = self.validate_proof(proof,last_proof)
 
@@ -55,11 +61,3 @@ class Blockchain(object):
     		proof+=1
 
     	return proof
-
-    @staticmethod
-    def validate_proof(self,proof,last_proof):
-    		guess =f'{last_proof}{proof}'.encode()
-
-    		hashed_guess = hashlib.sha256(guess).hexdigest()
-
-    		return hashed_guess[:4] == "0000"
