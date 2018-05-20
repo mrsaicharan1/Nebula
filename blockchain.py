@@ -49,7 +49,7 @@ class Blockchain(object):
 
     	hashed_guess = hashlib.sha256(guess).hexdigest()
 
-    	return hashed_guess[:4] == "0000"
+    	return hashed_guess[1:3] == "000"
 
 
     def proof_of_work(self,last_block):
