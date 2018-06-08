@@ -1,2 +1,3 @@
 # Nebula
-A whole new implementation of blockchain right from its roots.
+# Freeflow's blockchain
+A whole new implementation of blockchain right from its roots. 
