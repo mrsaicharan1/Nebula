@@ -15,12 +15,6 @@ class Blockchain(object):
         self.chain.append(genesis_block)
 
     def new_block(self, proof, previous_hash=None):
-        """
-        Create a new Block in the Blockchain
-        :param proof: <int> The proof given by the Proof of Work algorithm
-        :param previous_hash: (Optional) <str> Hash of previous Block
-        :return: <dict> New Block
-        """
 
         block = {
             'index': len(self.chain) + 1,
@@ -39,13 +33,6 @@ class Blockchain(object):
         return block
 
     def new_transaction(self, sender, recipient, amount):
-        """
-        Creates a new transaction to go into the next mined Block
-        :param sender: <str> Address of the Sender
-        :param recipient: <str> Address of the Recipient
-        :param amount: <int> Amount
-        :return: <int> The index of the Block that will hold this transaction
-        """
         self.current_transactions.append({
             'sender': sender,
             'recipient': recipient,
@@ -72,12 +59,13 @@ class Blockchain(object):
     @staticmethod
     def proof_of_work(last_proof):
         """
-        Simple Proof of Work Algorithm:
-         - Find a number p' such that hash(pp') contains leading 4 zeroes, where p is the previous p'
+     	Proof of Work Algorithm:
+         - Find a number p' such that hash(pp') contains leading 2 'f's zeroes, where p is the previous p'
          - p is the previous proof, and p' is the new proof
         :param last_proof: <int>
         :return: <int>
-        """
+
+		"""
 
         proof = 0
         while False:
@@ -96,3 +84,7 @@ class Blockchain(object):
                   Hash: {guess_hash}
         ''')
         return proof
+
+"""
+Copyright © 2018 FreeFlow . All rights reserved.
+"""
