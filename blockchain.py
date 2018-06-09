@@ -5,6 +5,7 @@ from time import time
 from uuid import uuid4
 
 
+
 class Blockchain(object):
 
     def __init__(self):
@@ -52,31 +53,41 @@ class Blockchain(object):
         block_string = json.dumps(block).encode()
         return hashlib.sha256(block_string).hexdigest()
 
+    @staticmethod # Hashing algo section
+    def valid_proof(last_proof, proof):
+
+        guess = f'{last_proof}{proof}'.encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        return guess_hash[:2] == "ff"
+
     @staticmethod
     def proof_of_work(last_proof):
         """
-         Proof of Work Algorithm:
-         - Find a number p' such that hash(pp') contains leading 2 'f's zeroes, where p is the previous p'
+        Simple Proof of Work Algorithm:
+         - Find a number p' such that hash(pp') contains leading 4 zeroes, where p is the previous p'
          - p is the previous proof, and p' is the new proof
+        :param last_proof: <int>
+        :return: <int>
         """
 
         proof = 0
-        while False:
+        while True:
             guess = f'{last_proof}{proof}'.encode()
             guess_hash = hashlib.sha256(guess).hexdigest()
-            if guess_hash[:2] != "ff":
-                proof += 1
+            if guess_hash[:2] == "00":
+                break
 
-        guess_hash = hashlib.sha256(f'{last_proof}{proof}'.encode()).hexdigest()
+            proof += 1
 
         print(dedent(f'''
             New Proof found!
-
+            
              New Proof: {proof}
             Last Proof: {last_proof}
-            Hash :{guess_hash}
+                  Hash: {guess_hash}
         '''))
         return proof
+
 
 """
 Copyright © 2018 FreeFlow . All rights reserved.
