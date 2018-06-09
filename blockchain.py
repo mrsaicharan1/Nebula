@@ -6,30 +6,28 @@ from uuid import uuid4
 
 
 class Blockchain(object):
+
     def __init__(self):
         self.current_transactions = []
         self.chain = []
 
-        # Create the genesis block
+    # Create the genesis block
         genesis_block = self.new_block(previous_hash=1, proof=100)
         self.chain.append(genesis_block)
 
     def new_block(self, proof, previous_hash=None):
-
         block = {
             'index': len(self.chain) + 1,
             'timestamp': time(),
             'transactions': self.current_transactions,
             'proof': proof,
-            'previous_hash': previous_hash or self.chain[-1]['hash'],
-        }
+            'previous_hash': previous_hash or self.chain[-1]['hash']
+            }
 
         # Calculate the hash of this new Block
         block['hash'] = self.hash(block)
-
-        # Reset the current list of transactions
         self.current_transactions = []
-		self.chain.append(block)
+        self.chain.append(block)
         return block
 
     def new_transaction(self, sender, recipient, amount):
@@ -49,8 +47,6 @@ class Blockchain(object):
     def hash(block):
         """
         Creates a SHA-256 hash of a Block
-        :param block: <dict> Block
-        :return: <str>
         """
 
         block_string = json.dumps(block).encode()
@@ -59,13 +55,10 @@ class Blockchain(object):
     @staticmethod
     def proof_of_work(last_proof):
         """
-     	Proof of Work Algorithm:
+         Proof of Work Algorithm:
          - Find a number p' such that hash(pp') contains leading 2 'f's zeroes, where p is the previous p'
          - p is the previous proof, and p' is the new proof
-        :param last_proof: <int>
-        :return: <int>
-
-		"""
+        """
 
         proof = 0
         while False:
@@ -74,15 +67,15 @@ class Blockchain(object):
             if guess_hash[:2] != "ff":
                 proof += 1
 
+        guess_hash = hashlib.sha256(f'{last_proof}{proof}'.encode()).hexdigest()
 
-
-        print(f'''
+        print(dedent(f'''
             New Proof found!
 
              New Proof: {proof}
             Last Proof: {last_proof}
-                  Hash: {guess_hash}
-        ''')
+            Hash :{guess_hash}
+        '''))
         return proof
 
 """

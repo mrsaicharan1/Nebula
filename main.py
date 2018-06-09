@@ -1,15 +1,14 @@
-from flask import Flask, jsonify,
+from flask import Flask, jsonify
 from textwrap import dedent
 from uuid import uuid4
-import blockchain
+from blockchain import *
 
 app = Flask(__name__)
 
 # Generate a globally unique address for this node
 node_identifier = str(uuid4()).replace('-', '')
 
-# Instantiate the Blockchain
-blockchain = Blockchain()
+blockchain =Blockchain()
 
 
 @app.route('/mine', methods=['GET'])
@@ -46,7 +45,7 @@ def new_transaction():
 		return 'Missing values',400
 
 	block_index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
-	response = {'message': f'Transaction will be added to Block {block_index}'}
+	response = { 'message': 'Transaction will be added to Block {block_index}' }
 	return jsonify(response), 201
 
 @app.route('/chain', methods=['GET'])
