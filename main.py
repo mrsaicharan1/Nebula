@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify,request
 from textwrap import dedent
 from uuid import uuid4
 from blockchain import *
