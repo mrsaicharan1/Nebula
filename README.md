@@ -11,25 +11,15 @@ A blockchain developed right from its roots.
 ### Prerequisites
 
 
-Run the command `pip install -r requirements.txt`
+- Run the command `pip install -r requirements.txt`
+- Install POSTMAN to send GET and POST requests.
 
-### Installing
+### Installation and Working
+To get the setup and test its functionality,
 
-A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
 
-```
-Give the example
-```
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
