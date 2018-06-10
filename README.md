@@ -5,15 +5,13 @@ A blockchain developed right from its roots.
 ## Getting Started
 
 - Download the repo as a zip file and extract its contents to a directory.
-
+- Run the virtual environment .
+- Run the WSGI app using `python3 main.py`
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
 
-```
-Give examples
-```
+Run the command `pip install -r requirements.txt`
 
 ### Installing
 
@@ -59,21 +57,19 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Flask](http://flask.pocoo.org/) - The web framework used
+
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Saicharan Reddy** - *Initial work* - [Saicharan Reddy](https://github.com/mrsaicharan1)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
